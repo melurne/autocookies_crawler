@@ -6,10 +6,13 @@ stdin.setRawMode( true );
 stdin.resume();
 stdin.setEncoding( 'utf8' );
 
+let curr;
+
 const selectors_1 = ("" + fs.readFileSync("common_1.css")).split("\n").join(" ");
 const selectors_2 = ("" + fs.readFileSync("common_2.css")).split("\n").join(" ");
 
 const checkPage = async (url) => {
+    curr = url;
     const browser = await puppeteer.launch({
         devtools: false,
         headless: true,
@@ -36,8 +39,9 @@ const checkPage = async (url) => {
         var html = await page.content();
         var document = HTMLParser.parse(html);
         if ((document.querySelector(selectors_1) != null) || (document.querySelector(selectors_2) != null)) {
+            el = document.querySelector(selectors_1) ? document.querySelector(selectors_1) != null : document.querySelector(selectors_2)
             console.log(url);
-            fs.appendFile("/usr/results/results.txt", url+"\n", err => {
+            fs.appendFile("/usr/results/"+ url +".txt", el.toString(), err => {
                 if (err) {
                     console.error(err);
                 }
@@ -63,6 +67,14 @@ const runCrawler = async (urls) => {
         
     }
 }
+
+process.on('exit', () => {
+    fs.appendFile("/usr/results/lastvisited.txt", curr + "\n", err => {
+        if (err) {
+            console.error(err);
+        }
+    });
+});
 
 fs.readFile('top-1m.csv', 'utf8', (err, data) => {
     if (err) {
