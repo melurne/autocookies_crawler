@@ -12,7 +12,8 @@ const selectors_2 = ("" + fs.readFileSync("common_2.css")).split("\n").join(" ")
 const checkPage = async (url) => {
     const browser = await puppeteer.launch({
         devtools: false,
-        headless: true
+        headless: true,
+        args: ['--no-sandbox']
     });
     const page = (await browser.pages())[0];
     stdin.on('data', async function(key) { 
