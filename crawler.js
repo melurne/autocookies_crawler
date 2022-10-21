@@ -40,7 +40,7 @@ const checkPage = async (url) => {
         var document = HTMLParser.parse(html);
         if ((document.querySelector(selectors_1) != null) || (document.querySelector(selectors_2) != null)) {
             el = document.querySelector(selectors_1) ? document.querySelector(selectors_1) != null : document.querySelector(selectors_2)
-            console.log(url);
+            console.log(el);
             fs.appendFile("/usr/results/"+ url.replaceAll("/", "_").replace("\r", "") +".txt", el.toString(), err => {
                 if (err) {
                     console.error(err);
