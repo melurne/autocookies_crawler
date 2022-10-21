@@ -41,7 +41,7 @@ const checkPage = async (url) => {
         if ((document.querySelector(selectors_1) != null) || (document.querySelector(selectors_2) != null)) {
             el = document.querySelector(selectors_1) ? document.querySelector(selectors_1) != null : document.querySelector(selectors_2)
             console.log(url);
-            fs.appendFile("/usr/results/"+ url.replace("/", "_").replace("\r", "") +".txt", el.toString(), err => {
+            fs.appendFile("/usr/results/"+ url.replaceAll("/", "_").replace("\r", "") +".txt", el.toString(), err => {
                 if (err) {
                     console.error(err);
                 }
