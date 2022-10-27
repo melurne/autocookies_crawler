@@ -7,7 +7,7 @@ stdin.resume();
 stdin.setEncoding( 'utf8' );
 
 let curr;
-let lastvisited = ("" + fs.readFileSync("/usr/results/lastvisited.txt"));
+let lastvisited = parseInt("" + fs.readFileSync("/usr/results/lastvisited.txt"));
 
 console.log(lastvisited);
 
@@ -60,7 +60,7 @@ const checkPage = async (url) => {
 
 const runCrawler = async (urls) => {
     for (u of urls) {
-        if (u.split(',')[0]<=lastvisited) {continue;}
+        if (parseInt((u.split(',')[0]))<=lastvisited) {continue;}
 
         target = u.split(",")[1];
         console.log(target);
@@ -75,7 +75,7 @@ const runCrawler = async (urls) => {
                 console.error(err);
             }
         });
-        lastvisited = u.split(',')[0];
+        lastvisited = parseInt((u.split(',')[0]);
     }
 }
 
