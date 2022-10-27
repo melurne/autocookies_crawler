@@ -3,6 +3,7 @@
     "fs": "^0.0.1-security",
     "key-events": "^0.1.1",
     "node-html-parser": "^6.1.1",
+    "pm2": "^5.2.2",
     "puppeteer": "^18.0.5",
     "puppeteer-devtools": "^3.0.0"
   }

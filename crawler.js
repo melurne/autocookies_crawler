@@ -70,12 +70,12 @@ const runCrawler = async (urls) => {
         else {
             await checkPage("http://www." + target);
         }
-        fs.writeFile("/usr/lastvisited.txt", u.split(',')[0],  err => {
+        fs.writeFile("/usr/results/lastvisited.txt", u.split(',')[0],  err => {
             if (err) {
                 console.error(err);
             }
         });
-        lastvisited = parseInt((u.split(',')[0]);
+        lastvisited = parseInt((u.split(',')[0]));
     }
 }
 
